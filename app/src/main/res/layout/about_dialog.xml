@@ -11,8 +11,8 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_below="@+id/ivAbout"
         android:layout_height="340dp"
+        android:layout_below="@+id/ivAbout"
 
         android:paddingLeft="20dip"
         android:paddingRight="20dip"
@@ -20,11 +20,11 @@
         >
 
         <TextView
-            android:text="@+id/tvAbout"
             android:id="@+id/tvAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autoLink="web|email" />
+            android:autoLink="web|email"
+            android:text="@+id/tvAbout" />
 
     </ScrollView>
 
