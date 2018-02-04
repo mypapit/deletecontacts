@@ -1,5 +1,5 @@
 /*
-        Copyright (c) 2016, Mohammad Hafiz bin Ismail <mypapit@gmail.com>
+        Copyright (c) 2018, Mohammad Hafiz bin Ismail <mypapit@gmail.com>
         All rights reserved.
 
         Redistribution and use in source and binary forms, with or without modification,
@@ -30,36 +30,34 @@
 package contacteraser.mobile.mypapit.net.contacteraser;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 interface ProgressStatusListener {
 
-    void onProgressUpdate(int count);
+    void onProgressUpdate(int count, String name);
 
-    void onProgressFinished(final int count);
+    void onProgressFinished(final int count, TextView textView);
 
 }
 
@@ -69,23 +67,28 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
     private static final String[] PERMISSIONS = {"android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS"};
     private ProgressDialog progressDialog;
     private ContentResolver contentResolver;
-    private Cursor cursor;
-    private TextView textView;
+    private Cursor cursor, cursor_nophone;
+    private TextView textView, textView2;
     private ProgressStatusListener progressStatusListener;
     private boolean isAllowed = true;
+
+    private RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         setContentView(R.layout.activity_main);
 
-        textView = (TextView) findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
+        textView2 = findViewById(R.id.textView2);
+        layout = findViewById(R.id.coordinatorLayout);
 
-        Button btnErase = (Button) findViewById(R.id.button);
+
+        FancyButton btnErase = findViewById(R.id.button);
+        FancyButton btnNoPhone = findViewById(R.id.button_nophone);
+
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -105,13 +108,20 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
         }
 
         if (isAllowed) {
+            final String[] columns = {ContactsContract.Contacts._ID, ContactsContract.Contacts.LOOKUP_KEY, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.HAS_PHONE_NUMBER};
             contentResolver = this.getContentResolver();
             cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+            cursor_nophone = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, columns, "HAS_PHONE_NUMBER <1", null, null);
+
+            int ColumeIndex_ID = cursor.getColumnIndex(ContactsContract.Contacts._ID);
             textView.setText(cursor.getCount() + " " + getString(R.string.contact_no));
+            textView2.setText(cursor_nophone.getCount() + " " + getString(R.string.contact_label_nophone));
             progressDialog.setMax(cursor.getCount());
 
         } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.permission_read_contact), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), getString(R.string.permission_read_contact), Toast.LENGTH_LONG).show();
+            Snackbar.make(layout, getString(R.string.permission_read_contact), Snackbar.LENGTH_LONG).show();
+
         }
 
 
@@ -123,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
 
 
         btnErase.setOnClickListener(this);
+        btnNoPhone.setOnClickListener(this);
 
 
     }
@@ -142,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
                 } catch (PackageManager.NameNotFoundException ex) {
                     Toast toast = Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT);
                     toast.show();
+                    //Snackbar.make(layout,getString(R.string.permission_read_contact),Snackbar.LENGTH_LONG).show();
 
                 }
         }
@@ -150,18 +162,20 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
     }
 
     @Override
-    public void onProgressUpdate(int count) {
+    public void onProgressUpdate(int count, String name) {
 
         progressDialog.setProgress(count);
+        progressDialog.setMessage(name);
         //Log.d("mypapit","count: " + count);
 
     }
 
     @Override
-    public void onProgressFinished(final int currentcount) {
+    public void onProgressFinished(final int currentcount, TextView tv) {
         progressDialog.dismiss();
-        Toast.makeText(getApplicationContext(), getString(R.string.delete_finished), Toast.LENGTH_SHORT).show();
-        textView.setText(currentcount + " " + getString(R.string.contact_no));
+        //Toast.makeText(getApplicationContext(), getString(R.string.delete_finished), Toast.LENGTH_SHORT).show();
+        Snackbar.make(layout, getString(R.string.delete_finished), Snackbar.LENGTH_LONG).show();
+        tv.setText(currentcount + " " + getString(R.string.contact_no));
 
 
     }
@@ -184,28 +198,61 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
 
         if (isAllowed) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.delete_contacts_confirm_title));
-            builder.setMessage(getString(R.string.delete_contacts_confirm));
-            builder.setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
+            progressDialog.setProgress(0);
 
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    new DeleteContact(getApplicationContext(), progressStatusListener, cursor, contentResolver, progressDialog).execute();
-                }
-            });
+            switch (view.getId()) {
 
-            builder.setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+                case R.id.button:
+                    builder.setTitle(getString(R.string.delete_contacts_confirm_title));
 
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                    builder.setMessage(getString(R.string.delete_contacts_confirm));
+                    builder.setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
 
-                }
-            });
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new DeleteContact(getApplicationContext(), progressStatusListener, cursor, contentResolver, progressDialog, textView).execute();
+                        }
+                    });
+                    progressDialog.setMax(cursor.getCount());
 
-            builder.create().show();
+                    builder.setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.create().show();
+                    break;
+                case R.id.button_nophone:
+                    builder.setTitle(getString(R.string.delete_contacts_nophone_confirm_title));
+                    builder.setMessage(getString(R.string.delete_contacts_nophone_confirm));
+                    progressDialog.setMax(cursor_nophone.getCount());
+                    builder.setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new DeleteContact(getApplicationContext(), progressStatusListener, cursor_nophone, contentResolver, progressDialog, textView2).execute();
+                        }
+                    });
+                    builder.setNegativeButton(R.string.confirm_cancel, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.create().show();
+                    break;
+
+
+            }
+
 
         } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.permission_read_contact), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), getString(R.string.permission_read_contact), Toast.LENGTH_SHORT).show();
+            Snackbar.make(layout, getString(R.string.permission_read_contact), Snackbar.LENGTH_LONG).show();
+
         }
 
     }
@@ -218,11 +265,11 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
         dialog.setCancelable(true);
 
         // text
-        TextView text = (TextView) dialog.findViewById(R.id.tvAbout);
+        TextView text = dialog.findViewById(R.id.tvAbout);
         text.setText(getString(R.string.txtLicense));
 
         // icon image
-        ImageView img = (ImageView) dialog.findViewById(R.id.ivAbout);
+        ImageView img = dialog.findViewById(R.id.ivAbout);
         img.setImageResource(R.mipmap.ic_launcher);
 
         dialog.show();
@@ -251,65 +298,3 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
     }
 }
 
-class DeleteContact extends AsyncTask<Void, Integer, Integer> {
-    private final Context ctx;
-    private final ContentResolver contentResolver;
-    private final Cursor cursor;
-    private final ProgressDialog progressDialog;
-    private final ProgressStatusListener progressStatusListener;
-    private final int maxcount;
-
-    public DeleteContact(Context ctx, ProgressStatusListener progressStatusListener, Cursor cursor, ContentResolver contentResolver, ProgressDialog progressDialog) {
-        this.ctx = ctx;
-        this.cursor = cursor;
-        this.contentResolver = contentResolver;
-        this.progressDialog = progressDialog;
-        this.progressStatusListener = progressStatusListener;
-        maxcount = cursor.getCount();
-
-
-    }
-
-    protected void onPreExecute() {
-        super.onPreExecute();
-        progressDialog.show();
-
-    }
-
-    @Override
-    protected Integer doInBackground(Void... voids) {
-        int num = 0;
-
-        while (cursor.moveToNext()) {
-            try {
-                String lookupKey = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-                Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey);
-                System.out.println("The uri is " + uri.toString());
-                contentResolver.delete(uri, null, null);
-
-                num++;
-                publishProgress(num);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return num;
-    }
-
-    protected void onProgressUpdate(Integer... progress) {
-
-        // super.onProgressUpdate(progress);
-
-        progressStatusListener.onProgressUpdate(progress[0]);
-
-
-    }
-
-    protected void onPostExecute(Integer result) {
-        // super.onPostExecute(result);
-        progressStatusListener.onProgressFinished(maxcount - result);
-
-    }
-}
