@@ -19,5 +19,6 @@
     <string name="permission_read_contact">Please allow access to your contacts</string>
     <string name="contacts_label">total contacts</string>
     <string name="contact_label_nophone">contacts w/out numbers</string>
+    <string name="zero">0</string>
 
 </resources>

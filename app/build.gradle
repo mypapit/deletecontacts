@@ -8,8 +8,8 @@ android {
         applicationId "contacteraser.mobile.mypapit.net.contacteraser"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 200
-        versionName "2.0"
+        versionCode 210
+        versionName "2.1"
     }
     buildTypes {
         release {
@@ -25,6 +25,7 @@ dependencies {
     compile 'com.android.support:support-core-ui:27.0.2'
     compile 'com.github.medyo:fancybuttons:1.8.4'
 
+    compile 'com.daasuu:CountAnimationTextView:0.1.1'
 
     compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.android.support:design:27.0.2'

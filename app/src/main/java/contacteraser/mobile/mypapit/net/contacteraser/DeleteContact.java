@@ -38,6 +38,8 @@ import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.widget.TextView;
 
+import com.daasuu.cat.CountAnimationTextView;
+
 public class DeleteContact extends AsyncTask<Void, String, Integer> {
     private final ContentResolver contentResolver;
     private final Cursor cursor;
@@ -45,9 +47,9 @@ public class DeleteContact extends AsyncTask<Void, String, Integer> {
     private final ProgressStatusListener progressStatusListener;
     private final int maxcount;
     private Context ctx;
-    private TextView textView;
+    private CountAnimationTextView textView;
 
-    DeleteContact(Context ctx, ProgressStatusListener progressStatusListener, Cursor cursor, ContentResolver contentResolver, ProgressDialog progressDialog, TextView textview) {
+    DeleteContact(Context ctx, ProgressStatusListener progressStatusListener, Cursor cursor, ContentResolver contentResolver, ProgressDialog progressDialog, CountAnimationTextView textview) {
         this.ctx = ctx;
         this.cursor = cursor;
         this.contentResolver = contentResolver;

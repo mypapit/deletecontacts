@@ -14,34 +14,34 @@
 
     >
 
-    <TextView
+    <com.daasuu.cat.CountAnimationTextView
         android:id="@+id/textView"
+        style="@style/TextLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-light"
-        android:text="@string/contacts_label"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/zero"
 
         />
 
-    <TextView
+    <com.daasuu.cat.CountAnimationTextView
         android:id="@+id/textView2"
+        style="@style/TextLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp"
         android:fontFamily="sans-serif-light"
-        android:text="@string/contact_label_nophone"
 
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/zero" />
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -61,7 +61,7 @@
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/button_nophone"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/button"
         android:layout_centerHorizontal="true"
@@ -80,6 +80,24 @@
         fancy:fb_iconPosition="left"
         fancy:fb_radius="30dp"
         fancy:fb_textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/lblTotalContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:text="@string/contacts_label" />
+
+    <TextView
+        android:id="@+id/lblNoPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:text="@string/contact_label_nophone" />
 
 
 </RelativeLayout>

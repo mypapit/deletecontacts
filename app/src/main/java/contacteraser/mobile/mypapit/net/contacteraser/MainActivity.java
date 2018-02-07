@@ -51,13 +51,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daasuu.cat.CountAnimationTextView;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 
 interface ProgressStatusListener {
 
     void onProgressUpdate(int count, String name);
 
-    void onProgressFinished(final int count, TextView textView);
+    void onProgressFinished(final int count, CountAnimationTextView textView);
 
 }
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
     private ProgressDialog progressDialog;
     private ContentResolver contentResolver;
     private Cursor cursor, cursor_nophone;
-    private TextView textView, textView2;
+    private CountAnimationTextView textView, textView2;
     private ProgressStatusListener progressStatusListener;
     private boolean isAllowed = true;
 
@@ -89,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
         FancyButton btnNoPhone = findViewById(R.id.button_nophone);
 
 
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setProgress(0);
@@ -108,15 +109,7 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
         }
 
         if (isAllowed) {
-            final String[] columns = {ContactsContract.Contacts._ID, ContactsContract.Contacts.LOOKUP_KEY, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.HAS_PHONE_NUMBER};
-            contentResolver = this.getContentResolver();
-            cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-            cursor_nophone = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, columns, "HAS_PHONE_NUMBER <1", null, null);
-
-            int ColumeIndex_ID = cursor.getColumnIndex(ContactsContract.Contacts._ID);
-            textView.setText(cursor.getCount() + " " + getString(R.string.contact_no));
-            textView2.setText(cursor_nophone.getCount() + " " + getString(R.string.contact_label_nophone));
-            progressDialog.setMax(cursor.getCount());
+            queryContacts();
 
         } else {
             //Toast.makeText(getApplicationContext(), getString(R.string.permission_read_contact), Toast.LENGTH_LONG).show();
@@ -171,11 +164,11 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
     }
 
     @Override
-    public void onProgressFinished(final int currentcount, TextView tv) {
+    public void onProgressFinished(final int currentcount, CountAnimationTextView tv) {
         progressDialog.dismiss();
         //Toast.makeText(getApplicationContext(), getString(R.string.delete_finished), Toast.LENGTH_SHORT).show();
         Snackbar.make(layout, getString(R.string.delete_finished), Snackbar.LENGTH_LONG).show();
-        tv.setText(currentcount + " " + getString(R.string.contact_no));
+        tv.setAnimationDuration(1000).countAnimation(0, currentcount);
 
 
     }
@@ -257,6 +250,25 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
 
     }
 
+    public void queryContacts() {
+
+        final String[] columns = {ContactsContract.Contacts._ID, ContactsContract.Contacts.LOOKUP_KEY, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.HAS_PHONE_NUMBER};
+        contentResolver = this.getContentResolver();
+        cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        cursor_nophone = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, columns, "HAS_PHONE_NUMBER <1", null, null);
+
+        int ColumeIndex_ID = cursor.getColumnIndex(ContactsContract.Contacts._ID);
+
+        // /textView.setText(cursor.getCount() + " " + getString(R.string.contact_no));
+        //textView2.setText(cursor_nophone.getCount() + " " + getString(R.string.contact_label_nophone));
+
+        textView.setAnimationDuration(2000).countAnimation(0, cursor.getCount());
+        textView2.setAnimationDuration(2000).countAnimation(0, cursor_nophone.getCount());
+
+        progressDialog.setMax(cursor.getCount());
+
+    }
+
 
     private void showDialog() throws PackageManager.NameNotFoundException {
         final AppCompatDialog dialog = new AppCompatDialog(this);
@@ -284,10 +296,7 @@ public class MainActivity extends AppCompatActivity implements ProgressStatusLis
             case PERMISSION_REQUEST_CODE:
                 if ((grantResults.length > 0) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     isAllowed = true;
-                    contentResolver = this.getContentResolver();
-                    cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-                    textView.setText(cursor.getCount() + " " + getString(R.string.contact_no));
-                    progressDialog.setMax(cursor.getCount());
+                    queryContacts();
 
 
                 }
