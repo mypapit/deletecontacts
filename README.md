@@ -1,12 +1,13 @@
 # deletecontacts
 Android App for deleting all contacts from phonebook
 
-# Built with
+## Built with
 * Android Studio 3.0
 * [CountAnimationTextView](https://github.com/MasayukiSuda/CountAnimationTextView)
 
 
-[Get it on Google Play](https://play.google.com/store/apps/details?id=contacteraser.mobile.mypapit.net.contacteraser)
+## Downloads
+* [Get it on Google Play](https://play.google.com/store/apps/details?id=contacteraser.mobile.mypapit.net.contacteraser)
 
 ## License
 Copyright 2018 Mohammad Hafiz bin Ismail (mypapit@gmail.com)
