@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="selection_count_title">
+        <item quantity="one">%d contact selected</item>
+        <item quantity="other">%d contacts selected</item>
+    </plurals>
+    <plurals name="delete_all_checkbox_label">
+        <item quantity="one">I understand %d contact on this device will be permanently deleted.</item>
+        <item quantity="other">I understand all %d contacts on this device will be permanently deleted.</item>
+    </plurals>
+    <plurals name="confirm_delete_selected_message">
+        <item quantity="one">This will permanently delete %d selected contact from your device address book. This action cannot be reversed.</item>
+        <item quantity="other">This will permanently delete %d selected contacts from your device address book. This action cannot be reversed.</item>
+    </plurals>
+    <plurals name="confirm_delete_no_phone_message">
+        <item quantity="one">This will permanently delete %d contact that does not have a phone number. Contacts with phone numbers will stay untouched. This action cannot be reversed.</item>
+        <item quantity="other">This will permanently delete all %d contacts that do not have a phone number. Contacts with phone numbers will stay untouched. This action cannot be reversed.</item>
+    </plurals>
+    <plurals name="confirm_delete_all_message">
+        <item quantity="one">This will permanently delete %d contact on this device, including contacts with phone numbers. This action cannot be reversed.</item>
+        <item quantity="other">This will permanently delete all %d contacts on this device, including contacts with phone numbers. This action cannot be reversed.</item>
+    </plurals>
+    <plurals name="deleted_selected_contacts">
+        <item quantity="one">Deleted %d selected contact.</item>
+        <item quantity="other">Deleted %d selected contacts.</item>
+    </plurals>
+    <plurals name="deleted_contacts_without_phone">
+        <item quantity="one">Deleted %d contact without a phone number.</item>
+        <item quantity="other">Deleted %d contacts without phone numbers.</item>
+    </plurals>
+    <plurals name="deleted_all_contacts">
+        <item quantity="one">Deleted %d contact.</item>
+        <item quantity="other">Deleted %d contacts.</item>
+    </plurals>
+</resources>

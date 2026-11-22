@@ -1,0 +1,199 @@
+<svg width="1440" height="980" viewBox="0 0 1440 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="phoneShadow" x="-30%" y="-20%" width="160%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#101828" flood-opacity="0.20"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#101828" flood-opacity="0.10"/>
+    </filter>
+    <linearGradient id="surfaceGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FDFEFF"/>
+      <stop offset="1" stop-color="#F3F6FB"/>
+    </linearGradient>
+    <clipPath id="screenClipA">
+      <rect x="83" y="72" width="338" height="732" rx="34"/>
+    </clipPath>
+    <clipPath id="screenClipB">
+      <rect x="551" y="72" width="338" height="732" rx="34"/>
+    </clipPath>
+    <clipPath id="screenClipC">
+      <rect x="1019" y="72" width="338" height="732" rx="34"/>
+    </clipPath>
+    <style>
+      .font { font-family: Roboto, Arial, sans-serif; }
+      .label { font-size: 12px; letter-spacing: 0; fill: #5D6675; }
+      .title { font-size: 20px; font-weight: 700; letter-spacing: 0; fill: #162033; }
+      .body { font-size: 14px; letter-spacing: 0; fill: #5D6675; }
+      .button { font-size: 14px; font-weight: 700; letter-spacing: 0; }
+      .caption { font-size: 11px; letter-spacing: 0; fill: #5D6675; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="980" fill="#EEF3FA"/>
+  <text class="font" x="72" y="52" font-size="26" font-weight="700" fill="#162033">Contact Eraser - Material 3 mobile mockups</text>
+  <text class="font body" x="72" y="78">Dashboard, review list, and destructive confirmation states based on the Android project strings and palette.</text>
+
+  <!-- Phone A: dashboard -->
+  <g filter="url(#phoneShadow)">
+    <rect x="66" y="46" width="374" height="786" rx="50" fill="#101828"/>
+    <rect x="76" y="56" width="354" height="766" rx="42" fill="#F7F9FC"/>
+    <g clip-path="url(#screenClipA)">
+      <rect x="83" y="72" width="338" height="732" fill="url(#surfaceGrad)"/>
+      <rect x="83" y="72" width="338" height="28" fill="#052E75"/>
+      <text class="font" x="108" y="91" font-size="11" font-weight="700" fill="#FFFFFF">9:41</text>
+      <circle cx="368" cy="86" r="4" fill="#FFFFFF"/>
+      <rect x="378" y="82" width="18" height="8" rx="2" stroke="#FFFFFF" stroke-width="1.2"/>
+      <rect x="397" y="84" width="2" height="4" rx="1" fill="#FFFFFF"/>
+      <rect x="83" y="100" width="338" height="64" fill="#0D47A1"/>
+      <text class="font" x="112" y="141" font-size="20" font-weight="700" fill="#FFFFFF">Contact Eraser</text>
+      <circle cx="378" cy="132" r="18" fill="#FFFFFF" fill-opacity="0.13"/>
+      <circle cx="378" cy="132" r="3" fill="#FFFFFF"/>
+      <circle cx="378" cy="122" r="3" fill="#FFFFFF"/>
+      <circle cx="378" cy="142" r="3" fill="#FFFFFF"/>
+
+      <text class="font title" x="112" y="206">Contact cleanup</text>
+      <text class="font body" x="112" y="232">Find contacts without phone numbers,</text>
+      <text class="font body" x="112" y="252">review them, and delete when ready.</text>
+
+      <g filter="url(#cardShadow)">
+        <rect x="112" y="282" width="135" height="138" rx="22" fill="#FFFFFF"/>
+        <rect x="112" y="282" width="135" height="138" rx="22" stroke="#D9E2EF"/>
+      </g>
+      <circle cx="138" cy="312" r="16" fill="#E8F0FE"/>
+      <path d="M132 315c2.8-5.4 9.2-5.4 12 0M138 310a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="#0D47A1" stroke-width="1.8" stroke-linecap="round"/>
+      <text class="font" x="128" y="358" font-size="38" font-weight="700" fill="#162033">800</text>
+      <text class="font label" x="128" y="389">Total contacts</text>
+
+      <g filter="url(#cardShadow)">
+        <rect x="260" y="282" width="135" height="138" rx="22" fill="#FFF7ED"/>
+        <rect x="260" y="282" width="135" height="138" rx="22" stroke="#FFCC80"/>
+      </g>
+      <circle cx="286" cy="312" r="16" fill="#FFE0B2"/>
+      <path d="M280 305l12 14M292 305l-12 14" stroke="#F57C00" stroke-width="2" stroke-linecap="round"/>
+      <text class="font" x="284" y="358" font-size="38" font-weight="700" fill="#162033">120</text>
+      <text class="font label" x="276" y="386">Without phone</text>
+      <text class="font label" x="276" y="404">number</text>
+
+      
+      <rect x="112" y="516" width="283" height="52" rx="16" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.4"/>
+      <text class="font button" x="151" y="548" fill="#F57C00">View all contacts without phone</text>
+      <path d="M136 532c9 0 14 10 14 10s-5 10-14 10-14-10-14-10 5-10 14-10Z" stroke="#F57C00" stroke-width="1.6"/>
+      <circle cx="136" cy="542" r="3.5" fill="#F57C00"/>
+
+      <rect x="112" y="592" width="283" height="52" rx="16" fill="#FF9800"/>
+      <text class="font button" x="150" y="624" fill="#1B1B1B">Delete contacts without phone</text>
+      <path d="M128 609h18M132 609l1.3 19h9.4L144 609M134 605h8" stroke="#1B1B1B" stroke-width="1.7" stroke-linecap="round"/>
+
+      <rect x="112" y="656" width="283" height="52" rx="16" fill="#C62828"/>
+      <text class="font button" x="180" y="688" fill="#FFFFFF">Delete all contacts</text>
+      <path d="M132 673h18M136 673l1.3 19h9.4L148 673M138 669h8" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round"/>
+
+      <rect x="214" y="784" width="76" height="4" rx="2" fill="#162033" fill-opacity="0.35"/>
+    </g>
+  </g>
+  <text class="font" x="94" y="870" font-size="16" font-weight="700" fill="#162033">Main dashboard</text>
+  <text class="font caption" x="94" y="892">Metric cards and Material 3 action hierarchy.</text>
+
+  <!-- Phone B: list screen -->
+  <g filter="url(#phoneShadow)">
+    <rect x="534" y="46" width="374" height="786" rx="50" fill="#101828"/>
+    <rect x="544" y="56" width="354" height="766" rx="42" fill="#F7F9FC"/>
+    <g clip-path="url(#screenClipB)">
+      <rect x="551" y="72" width="338" height="732" fill="url(#surfaceGrad)"/>
+      <rect x="551" y="72" width="338" height="28" fill="#052E75"/>
+      <text class="font" x="576" y="91" font-size="11" font-weight="700" fill="#FFFFFF">9:41</text>
+      <circle cx="836" cy="86" r="4" fill="#FFFFFF"/>
+      <rect x="846" y="82" width="18" height="8" rx="2" stroke="#FFFFFF" stroke-width="1.2"/>
+      <rect x="865" y="84" width="2" height="4" rx="1" fill="#FFFFFF"/>
+      <rect x="551" y="100" width="338" height="64" fill="#0D47A1"/>
+      <path d="M591 130l-10 10 10 10" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="font" x="616" y="141" font-size="18" font-weight="700" fill="#FFFFFF">Contacts without phone</text>
+
+      <rect x="579" y="190" width="282" height="84" rx="22" fill="#E8F0FE"/>
+      <text class="font" x="601" y="222" font-size="32" font-weight="700" fill="#0D47A1">120</text>
+      <text class="font body" x="601" y="248">contacts need review before delete</text>
+
+      <g>
+        <rect x="579" y="304" width="282" height="72" rx="18" fill="#FFFFFF" stroke="#D9E2EF"/>
+        <circle cx="613" cy="340" r="20" fill="#E8F0FE"/>
+        <text class="font" x="606" y="347" font-size="18" font-weight="700" fill="#0D47A1">A</text>
+        <text class="font" x="646" y="331" font-size="15" font-weight="700" fill="#162033">Aminah Rahman</text>
+        <text class="font caption" x="646" y="352">Phone number: none</text>
+        <path d="M836 333v18M827 342h18" stroke="#C62828" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g>
+        <rect x="579" y="388" width="282" height="72" rx="18" fill="#FFFFFF" stroke="#D9E2EF"/>
+        <circle cx="613" cy="424" r="20" fill="#FFF3E0"/>
+        <text class="font" x="606" y="431" font-size="18" font-weight="700" fill="#F57C00">J</text>
+        <text class="font" x="646" y="415" font-size="15" font-weight="700" fill="#162033">Jason Tan</text>
+        <text class="font caption" x="646" y="436">Phone number: none</text>
+        <path d="M836 417v18M827 426h18" stroke="#C62828" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g>
+        <rect x="579" y="472" width="282" height="72" rx="18" fill="#FFFFFF" stroke="#D9E2EF"/>
+        <circle cx="613" cy="508" r="20" fill="#EAF7EA"/>
+        <text class="font" x="606" y="515" font-size="18" font-weight="700" fill="#2E7D32">N</text>
+        <text class="font" x="646" y="499" font-size="15" font-weight="700" fill="#162033">Nur Iman</text>
+        <text class="font caption" x="646" y="520">Phone number: none</text>
+        <path d="M836 501v18M827 510h18" stroke="#C62828" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g>
+        <rect x="579" y="556" width="282" height="72" rx="18" fill="#FFFFFF" stroke="#D9E2EF"/>
+        <circle cx="613" cy="592" r="20" fill="#F2E7FE"/>
+        <text class="font" x="607" y="599" font-size="18" font-weight="700" fill="#6750A4">S</text>
+        <text class="font" x="646" y="583" font-size="15" font-weight="700" fill="#162033">Siti Aisyah</text>
+        <text class="font caption" x="646" y="604">Phone number: none</text>
+        <path d="M836 585v18M827 594h18" stroke="#C62828" stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <rect x="579" y="668" width="282" height="52" rx="16" fill="#C62828"/>
+      <text class="font button" x="630" y="700" fill="#FFFFFF">Delete reviewed contacts</text>
+      <rect x="682" y="784" width="76" height="4" rx="2" fill="#162033" fill-opacity="0.35"/>
+    </g>
+  </g>
+  <text class="font" x="562" y="870" font-size="16" font-weight="700" fill="#162033">Review list</text>
+  <text class="font caption" x="562" y="892">Contact rows with destructive affordances kept secondary until review.</text>
+
+  <!-- Phone C: confirmation dialog -->
+  <g filter="url(#phoneShadow)">
+    <rect x="1002" y="46" width="374" height="786" rx="50" fill="#101828"/>
+    <rect x="1012" y="56" width="354" height="766" rx="42" fill="#F7F9FC"/>
+    <g clip-path="url(#screenClipC)">
+      <rect x="1019" y="72" width="338" height="732" fill="url(#surfaceGrad)"/>
+      <rect x="1019" y="72" width="338" height="28" fill="#052E75"/>
+      <text class="font" x="1044" y="91" font-size="11" font-weight="700" fill="#FFFFFF">9:41</text>
+      <circle cx="1304" cy="86" r="4" fill="#FFFFFF"/>
+      <rect x="1314" y="82" width="18" height="8" rx="2" stroke="#FFFFFF" stroke-width="1.2"/>
+      <rect x="1333" y="84" width="2" height="4" rx="1" fill="#FFFFFF"/>
+      <rect x="1019" y="100" width="338" height="64" fill="#0D47A1"/>
+      <text class="font" x="1048" y="141" font-size="20" font-weight="700" fill="#FFFFFF">Contact Eraser</text>
+
+      <rect x="1048" y="196" width="282" height="94" rx="22" fill="#FFFFFF" stroke="#D9E2EF"/>
+      <text class="font" x="1070" y="228" font-size="28" font-weight="700" fill="#162033">800</text>
+      <text class="font body" x="1070" y="253">Total contacts on device</text>
+      <rect x="1048" y="310" width="282" height="52" rx="16" fill="#FF9800"/>
+      <text class="font button" x="1118" y="342" fill="#1B1B1B">Delete contacts without phone</text>
+      <rect x="1048" y="374" width="282" height="52" rx="16" fill="#C62828"/>
+      <text class="font button" x="1148" y="406" fill="#FFFFFF">Delete all contacts</text>
+
+      <rect x="1019" y="72" width="338" height="732" fill="#162033" fill-opacity="0.36"/>
+      <g filter="url(#cardShadow)">
+        <rect x="1051" y="267" width="274" height="246" rx="28" fill="#FFFFFF"/>
+      </g>
+      <circle cx="1091" cy="309" r="20" fill="#FFEBEE"/>
+      <path d="M1084 302l14 14M1098 302l-14 14" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/>
+      <text class="font" x="1075" y="357" font-size="20" font-weight="700" fill="#162033">Delete all contacts?</text>
+      <text class="font body" x="1075" y="389">This will permanently delete every</text>
+      <text class="font body" x="1075" y="410">contact on this device. This action</text>
+      <text class="font body" x="1075" y="431">cannot be undone.</text>
+      <rect x="1075" y="458" width="94" height="38" rx="19" fill="#FFFFFF"/>
+      <text class="font button" x="1097" y="482" fill="#5D6675">Cancel</text>
+      <rect x="1180" y="458" width="118" height="38" rx="19" fill="#C62828"/>
+      <text class="font button" x="1208" y="482" fill="#FFFFFF">Delete all</text>
+
+      <rect x="1150" y="784" width="76" height="4" rx="2" fill="#162033" fill-opacity="0.35"/>
+    </g>
+  </g>
+  <text class="font" x="1030" y="870" font-size="16" font-weight="700" fill="#162033">Confirmation state</text>
+  <text class="font caption" x="1030" y="892">Material alert dialog makes the destructive operation explicit.</text>
+</svg>
