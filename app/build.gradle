@@ -11,8 +11,8 @@ android {
         applicationId 'contacteraser.mobile.mypapit.net.contacteraser'
         minSdk 29
         targetSdk 37
-        versionCode 220
-        versionName '2.2'
+        versionCode 225
+        versionName '2.2.5'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
