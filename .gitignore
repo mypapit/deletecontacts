@@ -13,3 +13,4 @@ app/build/
 # Local agent brief, kept out of the repo
 /AGENTS*.md
 /app/release
+/app/release
