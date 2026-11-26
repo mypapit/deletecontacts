@@ -9,6 +9,7 @@ captures/
 app/build/
 # Unversioned seed data (contains licence-holder names)
 /csv/
-
+.gitignore
 # Local agent brief, kept out of the repo
 /AGENTS*.md
+/app/release
